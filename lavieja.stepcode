@@ -1,0 +1,148 @@
+Algoritmo Lavieja
+
+    //Definiimos las variables necesaariias
+    Definir tablero, movimiento, nuevapartida como cadena;
+    Definir TurnodelasO, TurnodelasX, Victoria como Logico;
+    Definir Turnos como Entero;
+
+    //asignamos un valor vacio a la cadena de tablero, a los booleanos necesarios y a la variable turnos
+    tablero ← "           ";
+    TurnodelasO ← Verdadero;
+    Victoria ← Falso;
+    //esta variable nos indicaa cuantos turnos llevan los jugadores, si llega a 9 significa que se llenaron las 9 casillas, por ende es empate
+    Turnos ← 0;
+    //mostramos el tablero vacio
+    Escribir "-------";	
+    Escribir "|", tablero[1], "|", tablero[2], "|", tablero[3], "|";
+    Escribir "-------";
+    Escribir "|", tablero[4], "|", tablero[5], "|", tablero[6], "|";
+    Escribir "-------";
+    Escribir "|", tablero[7], "|", tablero[8], "|", tablero[9], "|";
+    Escribir "-------";
+
+    //creamos un ciclo que se encargue de registrar los turnos, si llega a empate, se cierra el ciclo
+    Mientras Turnos < 9 Hacer
+        //Cuando uno de los jugadores gane se cerrara este clico y terminara el juego
+        Mientras Victoria = Falso Hacer
+        
+            Si TurnodelasO = Verdadero Entonces
+                
+                Escribir "Turno de las O";
+                Escribir "¿donde desea colocar la O? columna,fila: ";
+                Leer movimiento;
+                Si movimiento ≠ "1,1" y movimiento ≠ "1,2" y movimiento ≠ "1,3" y movimiento ≠ "2,1" y movimiento ≠ "2,2" y movimiento ≠ "2,3" y movimiento ≠ "3,1" y movimiento ≠ "3,2" y movimiento ≠ "3,3" entonces
+                    Escribir "casilla invalida, intente de nuevo";
+                Sino
+                    Si movimiento = "1,1" Entonces
+                        tablero ← "O" + tablero[2] + tablero[3] + tablero[4] + tablero[5] + tablero[6] + tablero[7] + tablero[8] + tablero[9];
+                    FinSi 
+                    Si movimiento = "1,2" Entonces
+                        tablero ← tablero[1] + tablero[2] + tablero[3] + "O" + tablero[5] + tablero[6] + tablero[7] + tablero[8] + tablero[9];
+                    FinSi 
+                    Si movimiento = "1,3" Entonces
+                        tablero ← tablero[1] + tablero[2] + tablero[3] + tablero[4] + tablero[5] + tablero[6] + "O" + tablero[8] + tablero[9];
+                    FinSi 
+                    Si movimiento = "2,1" Entonces
+                        tablero ← tablero[1] + "O" + tablero[3] + tablero[4] + tablero[5] + tablero[6] + tablero[7] + tablero[8] + tablero[9];
+                    FinSi 
+                    Si movimiento = "2,2" Entonces
+                        tablero ← tablero[1] + tablero[2] + tablero[3] + tablero[4] + "O" + tablero[6] + tablero[7] + tablero[8] + tablero[9];
+                    FinSi 
+                    Si movimiento = "2,3" Entonces
+                        tablero ← tablero[1] + tablero[2] + tablero[3] + tablero[4] + tablero[5] + tablero[6] + tablero[7] + "O" + tablero[9];
+                    FinSi 
+                    Si movimiento = "3,1" Entonces
+                        tablero ← tablero[1] + tablero[2] + "O" + tablero[4] + tablero[5] + tablero[6] + tablero[7] + tablero[8] + tablero[9];
+                    FinSi 
+                    Si movimiento = "3,2" Entonces
+                        tablero ← tablero[1] + tablero[2] + tablero[3] + tablero[4] + tablero[5] + "O" + tablero[7] + tablero[8] + tablero[9];
+                    FinSi 
+                    Si movimiento = "3,3" Entonces
+                        tablero ← tablero[1] + tablero[2] + tablero[3] + tablero[4] + tablero[5] + tablero[6] + tablero[7] + tablero[8] + "O";
+                    FinSi
+                    Escribir "-------";	
+                    Escribir "|", tablero[1], "|", tablero[2], "|", tablero[3], "|";
+                    Escribir "-------";
+                    Escribir "|", tablero[4], "|", tablero[5], "|", tablero[6], "|";
+                    Escribir "-------";
+                    Escribir "|", tablero[7], "|", tablero[8], "|", tablero[9], "|";
+                    Escribir "-------";
+                    Turnos ← Turnos + 1;
+                    Si (tablero[1] = "O" y tablero[2] = "O" y tablero[3] = "O") O (tablero[4] = "O" y tablero[5] = "O" y tablero[6] = "O") O (tablero[7] = "O" y tablero[8] = "O" y tablero[9] = "O") O (tablero[1] = "O" y tablero[4] = "O" y tablero[7] = "O") O (tablero[2] = "O" y tablero[5] = "O" y tablero[8] = "O") O (tablero[3] = "O" y tablero[6] = "O" y tablero[9] = "O") O (tablero[1] = "O" y tablero[5] = "O" y tablero[9] = "O") O (tablero[7] = "O" y tablero[5] = "O" y tablero[3] = "O") entonces
+                        Escribir "FELICIDADES GANARON LAS O";
+                        Victoria ← Verdadero;
+                        TurnodelasX ← Falso;
+                    Sino
+                        TurnodelasO ← Falso;
+                        TurnodelasX ← Verdadero;                
+                    Finsi
+                Finsi
+            FinSi
+        
+            Si TurnodelasX = Verdadero Entonces
+                
+                Escribir "Turno de las X";
+                Escribir "¿donde desea colocar la X? columna,fila: ";
+                Leer movimiento;
+                Si movimiento ≠ "1,1" y movimiento ≠ "1,2" y movimiento ≠ "1,3" y movimiento ≠ "2,1" y movimiento ≠ "2,2" y movimiento ≠ "2,3" y movimiento ≠ "3,1" y movimiento ≠ "3,2" y movimiento ≠ "3,3" entonces
+                    Escribir "casilla invalida, intente de nuevo";
+                Sino
+                    Si movimiento = "1,1" Entonces
+                        tablero ← "X" + tablero[2] + tablero[3] + tablero[4] + tablero[5] + tablero[6] + tablero[7] + tablero[8] + tablero[9];
+                    FinSi 
+                    Si movimiento = "1,2" Entonces
+                        tablero ← tablero[1] + tablero[2] + tablero[3] + "X" + tablero[5] + tablero[6] + tablero[7] + tablero[8] + tablero[9];
+                    FinSi 
+                    Si movimiento = "1,3" Entonces
+                        tablero ← tablero[1] + tablero[2] + tablero[3] + tablero[4] + tablero[5] + tablero[6] + "X" + tablero[8] + tablero[9];
+                    FinSi 
+                    Si movimiento = "2,1" Entonces
+                        tablero ← tablero[1] + "X" + tablero[3] + tablero[4] + tablero[5] + tablero[6] + tablero[7] + tablero[8] + tablero[9];
+                    FinSi 
+                    Si movimiento = "2,2" Entonces
+                        tablero ← tablero[1] + tablero[2] + tablero[3] + tablero[4] + "X" + tablero[6] + tablero[7] + tablero[8] + tablero[9];
+                    FinSi 
+                    Si movimiento = "2,3" Entonces
+                        tablero ← tablero[1] + tablero[2] + tablero[3] + tablero[4] + tablero[5] + tablero[6] + tablero[7] + "X" + tablero[9];
+                    FinSi 
+                    Si movimiento = "3,1" Entonces
+                        tablero ← tablero[1] + tablero[2] + "X" + tablero[4] + tablero[5] + tablero[6] + tablero[7] + tablero[8] + tablero[9];
+                    FinSi 
+                    Si movimiento = "3,2" Entonces
+                        tablero ← tablero[1] + tablero[2] + tablero[3] + tablero[4] + tablero[5] + "X" + tablero[7] + tablero[8] + tablero[9];
+                    FinSi 
+                    Si movimiento = "3,3" Entonces
+                        tablero ← tablero[1] + tablero[2] + tablero[3] + tablero[4] + tablero[5] + tablero[6] + tablero[7] + tablero[8] + "X";
+                    FinSi
+                    Escribir "-------";	
+                    Escribir "|", tablero[1], "|", tablero[2], "|", tablero[3], "|";
+                    Escribir "-------";
+                    Escribir "|", tablero[4], "|", tablero[5], "|", tablero[6], "|";
+                    Escribir "-------";
+                    Escribir "|", tablero[7], "|", tablero[8], "|", tablero[9], "|";
+                    Escribir "-------";
+                    Turnos ← Turnos + 1;
+                    Si (tablero[1] = "X" y tablero[2] = "X" y tablero[3] = "X") O (tablero[4] = "X" y tablero[5] = "X" y tablero[6] = "X") O (tablero[7] = "X" y tablero[8] = "X" y tablero[9] = "X") O (tablero[1] = "X" y tablero[4] = "X" y tablero[7] = "X") O (tablero[2] = "X" y tablero[5] = "X" y tablero[8] = "X") O (tablero[3] = "X" y tablero[6] = "X" y tablero[9] = "X") O (tablero[1] = "X" y tablero[5] = "X" y tablero[9] = "X") O (tablero[7] = "X" y tablero[5] = "X" y tablero[3] = "X") entonces
+                        Escribir "FELICIDADES GANARON LAS X";
+                        Victoria ← Verdadero;
+                    Sino
+                        TurnodelasO ← Verdadero; 
+                        TurnodelasX ← Falso;
+                    Finsi
+                Finsi
+            FinSi
+
+        FinMientras
+        Si Victoria = Verdadero Entonces
+            Turnos ← 10;
+        Finsi
+    FinMientras
+    Si Turnos = 9 Entonces
+        Escribir "No mas casillas disponibles, empate";
+        Victoria ← Verdadero;
+    FinSi
+    SI Victoria = Verdadero Entonces
+        Escribir "El juego ha terminado";
+    FinSi
+    
+FinAlgoritmo
